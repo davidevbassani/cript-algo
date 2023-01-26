@@ -1,8 +1,7 @@
 """
 Module provided by Mova801
-This simple module generate a pool of random integer values (in range MIN, MAX) associated to pre-selected and specific
-characters.
-The generated values are saved on file.
+A simple module that creates a pool of random integers in a given range and store them to a file.
+The values are associated with specific prefixed characters.
 The characters in the pool are:
 ' ', A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, a, b, c, d, e, f, g, h, i, j, k, l,
 m, n, o, p, q, r, s, t, u, v, w, x, y, z, ?, \", \#, $, %, &, ', (, ), *, +, -, ., ',', /, {, |, }, ~
