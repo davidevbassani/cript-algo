@@ -41,7 +41,7 @@ def main() -> None:
         - associate to a character
         :return: formatted values
         """
-        return f"{char}={str(values)[1:-1].replace(' ', '')}\n"
+        return f"{char},{str(values)[1:-1].replace(' ', '')}\n"
 
     characters: list = [
         '\' \'', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
