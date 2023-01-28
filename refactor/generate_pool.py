@@ -6,8 +6,8 @@ The characters in the pool are:
 ' ', A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, a, b, c, d, e, f, g, h, i, j, k, l,
 m, n, o, p, q, r, s, t, u, v, w, x, y, z, ?, \", \#, $, %, &, ', (, ), *, +, -, ., ',', /, {, |, }, ~
 """
-
 import random
+import logging
 
 # number of values to associate to each char
 NUM_ASSOCIATED_VAL: int = 4
@@ -19,11 +19,15 @@ MIN: int = 0
 MAX: int = 1000000001
 
 # generated file name
-FILENAME: str = "pool.txt"
+FILENAME: str = "pool.csv"
+
+logging.basicConfig(format=f'[%(asctime)s] [%(name)s/%(levelname)s]: %(message)s',
+                    datefmt='%H:%M:%S',
+                    level=logging.INFO)
 
 
 def main() -> None:
-    def generate_randint_list(dim: int) -> tuple[int]:
+    def generate_randint_list(dim: int) -> tuple:
         """
         Return a list of random int between MIN and MAX of length :param dim:.
         :param dim: length of the list
@@ -41,7 +45,7 @@ def main() -> None:
         - associate to a character
         :return: formatted values
         """
-        return f"{char},{str(values)[1:-1].replace(' ', '')}\n"
+        return f"{char},{str(values)[1:-1].replace(' ', '')}"
 
     characters: list = [
         '\' \'', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
@@ -51,11 +55,18 @@ def main() -> None:
         ',', '/', '{', '|', '}', '~'
     ]
     values: tuple[int] = tuple()
+    logging.info(f"Opening {FILENAME} file")
     with open(FILENAME, 'w') as file:
         for char in characters:
             values = generate_randint_list(NUM_ASSOCIATED_VAL)
-            file.write(format_values())
+            formatted_vals = format_values()
+            file.write(formatted_vals + "\n")
+            logging.info(f"stored in {FILENAME}: {formatted_vals}")
+    logging.info(f"Closed {FILENAME} file")
+    logging.info(f"Task completed successfully! Check your file '{FILENAME}'")
+    input("\nPress any key to exit...")
 
 
 if __name__ == "__main__":
+    logging.info(f"Script started")
     main()
